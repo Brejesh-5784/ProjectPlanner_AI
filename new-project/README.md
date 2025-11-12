@@ -24,8 +24,31 @@ A modern chatbot + project planner with Gantt chart visualization. Built with Re
 - FastAPI
 - Groq AI (LLaMA 3.3)
 - Python 3.9+
+- Netlify Functions
 
-## Setup
+## Deployment
+
+This project is configured for **Netlify** deployment.
+
+See [DEPLOY_NETLIFY.md](./DEPLOY_NETLIFY.md) for complete deployment instructions.
+
+### Quick Deploy
+
+```bash
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Login
+netlify login
+
+# Deploy
+cd new-project
+netlify init
+netlify env:set GROQ_API_KEY "your_groq_api_key"
+netlify deploy --prod
+```
+
+## Local Development
 
 ### Backend
 
@@ -82,7 +105,7 @@ Frontend will run on `http://localhost:3000`
 
 ## Usage
 
-1. Open `http://localhost:3000` in your browser
+1. Open the application in your browser
 2. Chat with the AI assistant about your project
 3. Describe your goals, timeline, and requirements
 4. AI will generate a comprehensive project plan
@@ -98,7 +121,7 @@ Frontend will run on `http://localhost:3000`
 
 ## API Endpoints
 
-- `GET /` - Health check
+- `GET /api` - Health check
 - `POST /api/chat` - Chat with AI assistant
 - `POST /api/generate-plan` - Generate project plan
 - `PUT /api/projects/{project_id}/tasks/{task_id}` - Update task
@@ -107,10 +130,15 @@ Frontend will run on `http://localhost:3000`
 
 ```
 new-project/
+├── netlify.toml            # Netlify configuration
 ├── backend/
-│   ├── app.py              # FastAPI application
+│   ├── netlify/
+│   │   └── functions/
+│   │       └── api.py      # Serverless function
+│   ├── app.py              # Local dev server
+│   ├── main.py             # FastAPI app (legacy)
 │   ├── requirements.txt    # Python dependencies
-│   └── .env.example        # Environment template
+│   └── runtime.txt         # Python version
 ├── frontend/
 │   ├── src/
 │   │   ├── components/     # React components
@@ -123,14 +151,19 @@ new-project/
 └── README.md
 ```
 
-## Key Differences from Original
+## Environment Variables
 
-1. **Completely New UI**: Modern gradient design with purple/indigo theme
-2. **Enhanced Backend**: Better task dependency logic and date calculations
-3. **Interactive Gantt**: Click tasks for details, color-coded by priority
-4. **Real-time Chat**: Conversational AI planning assistant
-5. **Better Data Model**: Includes descriptions, priorities, milestones
-6. **Responsive Design**: Works on all screen sizes
+### Backend
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+### Frontend (Local Dev)
+```
+VITE_API_URL=http://localhost:8000
+```
+
+For production, API calls use relative URLs (`/api/*`) which Netlify redirects to serverless functions.
 
 ## License
 

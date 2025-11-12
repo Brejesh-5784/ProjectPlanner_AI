@@ -1,0 +1,49 @@
+# Netlify Configuration for AI Project Planner
+# This config deploys both frontend and backend as Netlify Functions
+
+[build]
+  # Build the frontend
+  base = "new-project/frontend"
+  command = "npm install && npm run build"
+  publish = "new-project/frontend/dist"
+  functions = "new-project/backend/netlify/functions"
+
+# Environment variables (set these in Netlify Dashboard)
+# GROQ_API_KEY = "your_groq_api_key_here"
+
+# Redirect API calls to serverless functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# SPA routing - redirect all routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Function configuration
+[functions]
+  # Increase timeout for AI processing (max 26s on free tier, 60s on Pro)
+  node_bundler = "esbuild"
+  
+[functions."api"]
+  # Python runtime for backend
+  included_files = ["**/*.py", "requirements.txt"]
