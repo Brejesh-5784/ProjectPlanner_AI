@@ -1,5 +1,5 @@
 # Netlify Configuration for AI Project Planner
-# This config deploys both frontend and backend as Netlify Functions
+# Deploys frontend (React) and backend (Python FastAPI) as Netlify Functions
 
 [build]
   # Build the frontend
