@@ -1,125 +1,42 @@
-# 🤖 AI Project Planner
+# 🤖 AI Project Planner 
 
-> A modern chatbot + project planner with interactive Gantt chart visualization. Built with React, FastAPI, and Groq AI.
+> AI-powered project planner with interactive Gantt charts. Chat naturally to generate comprehensive project timelines. Built with React, FastAPI & Groq AI.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://chatplanner.netlify.app)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_BADGE_ID/deploy-status)](https://app.netlify.com/sites/chatplanner/deploys)
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://projectplannerai.netlify.app)
 
-**🌐 Live Demo:** [https://chatplanner.netlify.app](https://chatplanner.netlify.app)
+**🌐 Live Demo:** [https://projectplannerai.netlify.app](https://projectplannerai.netlify.app)
+
+---
+
+##  Features
+
+- 🤖 **AI-Powered Planning** - Chat with AI to create project plans
+- 📊 **Interactive Gantt Chart** - Visual timeline with dependencies
+- 🎨 **Modern UI** - Beautiful gradient design
+- ⚡ **Real-time Updates** - Instant plan generation
+- 📅 **Smart Scheduling** - Automatic task dependencies
+- 👥 **Team Management** - Track assignments and workload
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:** React 18, Vite, Tailwind CSS, Lucide Icons  
+**Backend:** FastAPI, Groq AI (LLaMA 3.3), Python 3.9  
+**Deployment:** Netlify (Frontend) + Render (Backend)
 
 ---
 
 ## 🚀 Quick Start
 
-**Try it now:** Visit [chatplanner.netlify.app](https://chatplanner.netlify.app)
-
-**Deploy your own:** See [new-project/START_HERE.md](./new-project/START_HERE.md) for deployment instructions.
-
-## 📁 Project Structure
-
-```
-.
-├── netlify.toml                    # Netlify configuration
-├── .gitignore                      # Git ignore rules
-├── .netlifyignore                  # Netlify deployment exclusions
-├── README.md                       # This file
-└── new-project/                    # Main project directory
-    ├── frontend/                   # React frontend (Vite)
-    │   ├── src/
-    │   │   ├── components/         # React components
-    │   │   ├── App.jsx            # Main app
-    │   │   └── main.jsx           # Entry point
-    │   ├── package.json
-    │   └── vite.config.js
-    ├── backend/                    # Python FastAPI backend
-    │   ├── netlify/
-    │   │   └── functions/
-    │   │       └── api.py         # Serverless function
-    │   ├── requirements.txt       # Python dependencies
-    │   └── runtime.txt            # Python version
-    └── Documentation/              # Guides and docs
-        ├── START_HERE.md
-        ├── QUICKSTART.md
-        └── DEPLOY_NETLIFY.md
-```
-
-## ✨ Features
-
-- 🤖 **AI-Powered Planning** - Chat naturally with AI to create comprehensive project plans
-- 📊 **Interactive Gantt Chart** - Visual timeline with task dependencies and progress tracking
-- 🎨 **Modern UI** - Beautiful gradient design with smooth animations and responsive layout
-- ⚡ **Real-time Updates** - Instant plan generation and visualization
-- 📅 **Smart Scheduling** - Automatic task dependency management and date calculations
-- 👥 **Team Management** - Track team members, assignments, and workload distribution
-- 🎯 **Priority Levels** - High, medium, and low priority task classification
-- 📈 **Progress Tracking** - Visual progress indicators and milestone tracking
-- 🔄 **Task Dependencies** - Automatic scheduling based on task relationships
-- 💾 **No Database Required** - Fully client-side with serverless backend
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React 18** - UI framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Lucide Icons** - Beautiful icon library
-- **date-fns** - Date manipulation library
-
-### Backend
-- **FastAPI** - Modern Python web framework
-- **Groq AI** - LLaMA 3.3 70B model for intelligent planning
-- **Python 3.9+** - Programming language
-- **Mangum** - ASGI adapter for serverless
-- **Netlify Functions** - Serverless deployment platform
-
-### Infrastructure
-- **Netlify** - Hosting and serverless functions
-- **GitHub** - Version control and CI/CD
-- **Global CDN** - Fast content delivery worldwide
-
-## 🚀 Deployment
-
-This project is deployed on **Netlify** with automatic CI/CD from GitHub.
-
-**Live Site:** [https://chatplanner.netlify.app](https://chatplanner.netlify.app)
-
-### Deploy Your Own (5 Minutes)
-
-1. **Fork this repository**
-   ```bash
-   # Clone your fork
-   git clone https://github.com/YOUR_USERNAME/chat.git
-   cd chat
-   ```
-
-2. **Verify setup**
-   ```bash
-   bash new-project/verify-netlify-setup.sh
-   ```
-
-3. **Deploy to Netlify**
-   - Go to [app.netlify.com](https://app.netlify.com/)
-   - Click "Add new site" → "Import an existing project"
-   - Select your GitHub repository
-   - Netlify auto-detects settings from `netlify.toml`
-   - Add environment variable: `GROQ_API_KEY` (get from [console.groq.com](https://console.groq.com))
-   - Click "Deploy site"
-
-4. **Done!** Your site will be live in ~2 minutes
-
-📚 **Detailed Guide:** See [new-project/QUICKSTART.md](./new-project/QUICKSTART.md)
-
-## 💻 Local Development
-
 ### Prerequisites
-- Node.js 16+ and npm
+- Node.js 16+
 - Python 3.9+
-- Groq API key ([Get one free](https://console.groq.com))
+- Groq API key ([Get free](https://console.groq.com))
 
 ### Backend Setup
 
 ```bash
-# Navigate to backend
 cd new-project/backend
 
 # Install dependencies
@@ -129,8 +46,8 @@ pip install -r requirements.txt
 cp .env.example .env
 # Add your GROQ_API_KEY to .env
 
-# Run development server
-python app.py
+# Run server
+uvicorn api:app --reload --port 8000
 ```
 
 Backend runs at: **http://localhost:8000**
@@ -138,106 +55,137 @@ Backend runs at: **http://localhost:8000**
 ### Frontend Setup
 
 ```bash
-# Navigate to frontend
 cd new-project/frontend
 
 # Install dependencies
 npm install
 
-# Run development server
+# Run dev server
 npm run dev
 ```
 
 Frontend runs at: **http://localhost:3000**
 
-### Test the Application
+---
 
-1. Open http://localhost:3000
-2. Click "Get Started"
-3. Chat: "Build a website in 30 days with 5 people"
-4. Click "Generate Gantt Chart"
-5. See your project timeline!
+## 🌐 Deployment
 
-## 📚 Documentation
+### Backend (Render)
 
-| Document | Description |
-|----------|-------------|
-| [START_HERE.md](./new-project/START_HERE.md) | Your starting point - overview and quick links |
-| [QUICKSTART.md](./new-project/QUICKSTART.md) | 5-minute deployment guide |
-| [DEPLOY_NETLIFY.md](./new-project/DEPLOY_NETLIFY.md) | Detailed deployment instructions |
-| [DEPLOYMENT_CHECKLIST.md](./new-project/DEPLOYMENT_CHECKLIST.md) | Pre-deployment verification checklist |
-| [NETLIFY_MIGRATION_COMPLETE.md](./new-project/NETLIFY_MIGRATION_COMPLETE.md) | Migration details from Vercel to Netlify |
+1. Go to [render.com](https://render.com)
+2. Create **Web Service**
+3. Configure:
+   - **Root Directory:** `new-project/backend`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn api:app --host 0.0.0.0 --port $PORT`
+4. Add environment variable: `GROQ_API_KEY`
+5. Deploy!
+
+**Backend URL:** `https://projectplanner-backend-0rsl.onrender.com`
+
+### Frontend (Netlify)
+
+1. Go to [netlify.com](https://netlify.com)
+2. Import from GitHub
+3. Configure:
+   - **Base directory:** `new-project/frontend`
+   - **Build command:** `npm install && npm run build`
+   - **Publish directory:** `dist`
+4. Add environment variable: `VITE_API_URL` = your Render backend URL
+5. Deploy!
+
+**Frontend URL:** `https://projectplannerai.netlify.app`
+
+---
+
+## 📁 Project Structure
+
+```
+.
+├── README.md                   # This file
+├── new-project/
+│   ├── backend/                # Python FastAPI backend
+│   │   ├── api.py             # Main API file
+│   │   ├── requirements.txt   # Python dependencies
+│   │   └── .env.example       # Environment template
+│   └── frontend/              # React frontend
+│       ├── src/               # Source code
+│       ├── package.json       # Node dependencies
+│       └── .env.example       # Environment template
+```
+
+---
 
 ## 🔐 Environment Variables
 
-### Production (Netlify)
-Set in Netlify Dashboard → Site settings → Environment variables:
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `GROQ_API_KEY` | Your Groq API key from [console.groq.com](https://console.groq.com) | ✅ Yes |
-
-### Local Development
-Create `new-project/backend/.env`:
+### Backend
 ```bash
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-## 🎯 Usage Examples
+### Frontend
+```bash
+VITE_API_URL=http://localhost:8000  # Local dev
+# VITE_API_URL=https://your-backend.onrender.com  # Production
+```
 
-### Example Prompts
+---
 
-Try these in the chat interface:
+## 🎯 Usage
 
-- "Build an e-commerce website in 6 weeks with a team of 4"
-- "Create a mobile app for iOS and Android in 2 months"
-- "Launch a marketing campaign in 30 days with 3 people"
-- "Develop a SaaS product with authentication, dashboard, and payments in 90 days"
-- "Research project on AI with 5 researchers over 12 weeks"
+1. Open the app
+2. Click **"Get Started"**
+3. Chat: "Build a website in 30 days with 5 people"
+4. Click **"Generate Gantt Chart"**
+5. View your project timeline!
 
-### API Endpoints
+---
+
+## 📊 API Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/api` | GET | Health check and API info |
-| `/api/debug` | GET | Debug endpoint (check environment) |
-| `/api/chat` | POST | Chat with AI assistant |
-| `/api/generate-plan` | POST | Generate project plan with Gantt data |
-| `/api/projects/{id}/tasks/{id}` | PUT | Update task details |
+| `/api` | GET | Health check |
+| `/api/chat` | POST | Chat with AI |
+| `/api/generate-plan` | POST | Generate project plan |
+| `/api/debug` | GET | Debug info |
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions welcome! Feel free to submit a Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+---
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](./new-project/LICENSE) file for details.
+MIT License - feel free to use this project for anything!
+
+---
 
 ## 🙏 Acknowledgments
 
-- **Groq** - For providing fast LLM inference
-- **Netlify** - For serverless hosting and functions
-- **FastAPI** - For the excellent Python web framework
-- **React** - For the powerful UI library
+- **Groq** - Fast LLM inference
+- **Render** - Backend hosting
+- **Netlify** - Frontend hosting
+- **FastAPI** - Python web framework
+- **React** - UI library
 
-## 📧 Contact & Support
+---
 
-- **Live Demo:** [https://chatplanner.netlify.app](https://chatplanner.netlify.app)
-- **Issues:** [GitHub Issues](https://github.com/Brejesh-5784/chat/issues)
-- **Repository:** [github.com/Brejesh-5784/chat](https://github.com/Brejesh-5784/chat)
+## 📧 Contact
+
+- **Live Demo:** [https://projectplannerai.netlify.app](https://projectplannerai.netlify.app)
+- **Backend API:** [https://projectplanner-backend-0rsl.onrender.com](https://projectplanner-backend-0rsl.onrender.com)
+- **Repository:** [github.com/Brejesh-5784/ProjectPlanner_AI](https://github.com/Brejesh-5784/ProjectPlanner_AI)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ using React, FastAPI, and Groq AI**
+**Made with using React, FastAPI, and Groq AI**
 
-[Live Demo](https://chatplanner.netlify.app) • [Documentation](./new-project/START_HERE.md) • [Report Bug](https://github.com/Brejesh-5784/chat/issues)
+[Live Demo](https://projectplannerai.netlify.app) • [Report Bug](https://github.com/Brejesh-5784/ProjectPlanner_AI/issues)
 
 </div>

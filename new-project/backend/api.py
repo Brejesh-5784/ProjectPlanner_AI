@@ -1,9 +1,9 @@
 """
-Netlify Function Entry Point for AI Project Planner Backend
-============================================================
+AI Project Planner Backend API
+===============================
 
-This file serves as the entry point for Netlify Functions.
-It wraps the FastAPI application to work with Netlify's serverless environment.
+FastAPI backend for AI-powered project planning.
+Deployed on Render as a web service.
 """
 
 from fastapi import FastAPI, HTTPException
@@ -113,7 +113,7 @@ def root():
     return {
         "status": "AI Project Planner API",
         "version": "2.0",
-        "platform": "Netlify Functions",
+        "platform": "Render",
         "endpoints": {
             "chat": "/api/chat",
             "generate_plan": "/api/generate-plan",
@@ -405,10 +405,14 @@ async def update_task(project_id: str, task_id: str, task: Task):
 
 
 # ============================================================================
-# NETLIFY FUNCTION HANDLER
+# APPLICATION ENTRY POINT
 # ============================================================================
 
-from mangum import Mangum
+# For Render deployment, FastAPI app is used directly
+# Run with: uvicorn api:app --host 0.0.0.0 --port $PORT
 
-# Wrap FastAPI app with Mangum for Netlify Functions
-handler = Mangum(app, lifespan="off")
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
